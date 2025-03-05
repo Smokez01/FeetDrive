@@ -9,6 +9,8 @@ f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
 f.iconbitmap("Feet.ico")
 
+f.overrideredirect(True)
+
 upload = Image.open("upload.png")
 uploadPhoto = ImageTk.PhotoImage(upload)
 
