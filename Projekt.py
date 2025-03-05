@@ -9,7 +9,7 @@ f.title("FeetDrive")
 f.geometry("250x100")
 f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
-f.iconbitmap("Feet.ico")
+f.iconbitmap("images/Feet.ico")
 
 def add_file():
     file_path = filedialog.askopenfile(title="Datei auswählen")
@@ -22,13 +22,13 @@ def remove_from_cloud():
         data.pop(selected_file_index[0])
         update_data()
 
-upload = Image.open("upload.png")
+upload = Image.open("images/upload.png")
 uploadPhoto = ImageTk.PhotoImage(upload)
 
-download = Image.open("download.png")
+download = Image.open("images/download.png")
 downloadPhoto = ImageTk.PhotoImage(download)
 
-delete = Image.open("delete.png")
+delete = Image.open("images/delete.png")
 deletePhoto = ImageTk.PhotoImage(delete)
 
 upload_Button=Button(f, image=uploadPhoto, command=add_file, bg="dark violet", relief=FLAT,activebackground="dark violet")
