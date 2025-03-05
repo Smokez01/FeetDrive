@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 
 f=Tk()
 f.title("FeetDrive")
-f.geometry("250x400")
+f.geometry("250x100")
 f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
 f.iconbitmap("Feet.ico")
@@ -16,9 +16,9 @@ download = Image.open("download.png")
 downloadPhoto = ImageTk.PhotoImage(download)
 
 upload_Button=Button(f, image=uploadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
-upload_Button.place(x=10, y=300)
+upload_Button.place(x=10, y=10)
 
 download_Button = Button(f, image=downloadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
-download_Button.place(x=180, y=300)
+download_Button.place(x=180, y=10)
 
 f.mainloop()
