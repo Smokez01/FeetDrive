@@ -11,6 +11,8 @@ f.iconbitmap("Feet.ico")
 
 f.overrideredirect(True)
 
+title_bar = Frame(f, background="dark violet", relief="raised",bd=2)
+
 upload = Image.open("upload.png")
 uploadPhoto = ImageTk.PhotoImage(upload)
 
