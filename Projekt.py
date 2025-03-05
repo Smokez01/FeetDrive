@@ -11,6 +11,6 @@ f.configure(bg="dark violet")
 folder = Image.open("folder.png")
 folderPhoto = ImageTk.PhotoImage(folder)
 
-folder_Button=Button(f, image=folderPhoto, bg="dark violet", relief=FLAT)
+folder_Button=Button(f, image=folderPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
 folder_Button.place(x=25, y=50)
 f.mainloop()
