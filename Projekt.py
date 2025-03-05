@@ -3,7 +3,7 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 
 f=Tk()
-f.title("FeetDrive",bg="dark violet")
+f.title("FeetDrive")
 f.geometry("250x400")
 f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
