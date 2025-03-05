@@ -3,15 +3,11 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 
 f=Tk()
-f.title("FeetDrive")
+f.title("FeetDrive",bg="dark violet")
 f.geometry("250x400")
 f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
 f.iconbitmap("Feet.ico")
-
-f.overrideredirect(True)
-
-title_bar = Frame(f, background="dark violet", relief="raised",bd=2)
 
 upload = Image.open("upload.png")
 uploadPhoto = ImageTk.PhotoImage(upload)
@@ -24,7 +20,5 @@ upload_Button.place(x=10, y=300)
 
 download_Button = Button(f, image=downloadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
 download_Button.place(x=180, y=300)
-
-
 
 f.mainloop()
