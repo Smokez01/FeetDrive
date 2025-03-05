@@ -8,9 +8,16 @@ f.geometry("200x400")
 f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
 
-folder = Image.open("folder.png")
-folderPhoto = ImageTk.PhotoImage(folder)
+upload = Image.open("upload.png")
+uploadPhoto = ImageTk.PhotoImage(upload)
 
-folder_Button=Button(f, image=folderPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
-folder_Button.place(x=25, y=50)
+download = Image.open("download.png")
+downloadPhoto = ImageTk.PhotoImage(download)
+
+upload_Button=Button(f, image=uploadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
+upload_Button.place(x=10, y=300)
+
+download_Button = Button(f, image=downloadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
+download_Button.place(x=150, y=300)
+
 f.mainloop()
