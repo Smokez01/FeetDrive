@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
+import webbrowser
+import os
 
 Data = []
 
@@ -11,7 +13,13 @@ f. resizable(width=False, height=False)
 f.configure(bg="dark violet")
 f.iconbitmap("images/Feet.ico")
 
+def open_html():
+    html_file = "Cloud.html"
+    file_path= os.path.abspath(html_file)
+    webbrowser.open("C:\github\Projekt\Cloud.html")
+
 def add_file():
+    
     file_path = filedialog.askopenfile(title="Datei auswählen")
     if file_path:
         Data.append(file_path)
@@ -31,7 +39,7 @@ downloadPhoto = ImageTk.PhotoImage(download)
 delete = Image.open("images/delete.png")
 deletePhoto = ImageTk.PhotoImage(delete)
 
-upload_Button=Button(f, image=uploadPhoto, command=add_file, bg="dark violet", relief=FLAT,activebackground="dark violet")
+upload_Button=Button(f, image=uploadPhoto, command=open_html, bg="dark violet", relief=FLAT,activebackground="dark violet")
 upload_Button.place(x=5, y=10)
 
 download_Button = Button(f, image=downloadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
