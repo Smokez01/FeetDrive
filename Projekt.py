@@ -19,7 +19,7 @@ def open_html():
     webbrowser.open("C:\github\Projekt\Cloud.html")
 
 def add_file():
-    
+    open_html()
     file_path = filedialog.askopenfile(title="Datei auswählen")
     if file_path:
         Data.append(file_path)
