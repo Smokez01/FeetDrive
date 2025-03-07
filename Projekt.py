@@ -39,13 +39,19 @@ downloadPhoto = ImageTk.PhotoImage(download)
 delete = Image.open("images/delete.png")
 deletePhoto = ImageTk.PhotoImage(delete)
 
-upload_Button=Button(f, image=uploadPhoto, command=open_html, bg="dark violet", relief=FLAT,activebackground="dark violet")
-upload_Button.place(x=5, y=10)
+Open = Image.open("image/open.png")
+OpenPhoto = ImageTk.PhotoImage(Open)
+
+upload_Button=Button(f, image=uploadPhoto, command=add_file, bg="dark violet", relief=FLAT,activebackground="dark violet")
+upload_Button.place(x=5, y=50)
 
 download_Button = Button(f, image=downloadPhoto, bg="dark violet", relief=FLAT,activebackground="dark violet")
-download_Button.place(x=90, y=10)
+download_Button.place(x=90, y=50)
 
 delete_Button=Button(f, image=deletePhoto, command=remove_from_cloud, bg="dark violet", relief=FLAT,activebackground="dark violet")
-delete_Button.place(x=175, y=10)
+delete_Button.place(x=175, y=50)
+
+Open_Button=Button(f, image= OpenPhoto, command=open_html, bg= "dark violet", relief=Flat,activebackground="dark violet")
+Open_Button.place(x=90, y=10)
 
 f.mainloop()
