@@ -21,6 +21,13 @@ if os.path.exists(icon_path):
 
 # Funktion zur Aktualisierung der Cloud.html
 def update_html():
+    html_file = "Cloud.html"
+
+    # Falls die alte HTML-Datei existiert, löschen wir sie
+    if os.path.exists(html_file):
+        os.remove(html_file)
+
+    # Neue HTML-Datei erstellen
     html_content = """<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -28,10 +35,12 @@ def update_html():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeetDrive Cloud</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #222; color: white; text-align: center; }
-        h1 { color: #ffcc00; }
+        body { font-family: Arial, sans-serif; background-color: darkviolet; color: white; text-align: center; }
+        h1 { color: white; }
         ul { list-style-type: none; padding: 0; }
-        li { background: #444; margin: 5px; padding: 10px; border-radius: 5px; }
+        li { background: #660066; margin: 5px; padding: 10px; border-radius: 5px; }
+        a { color: white; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -47,12 +56,12 @@ def update_html():
 </body>
 </html>"""
 
-    with open("Cloud.html", "w", encoding="utf-8") as file:
+    with open(html_file, "w", encoding="utf-8") as file:
         file.write(html_content)
 
 # Funktion zum Öffnen der Cloud.html
 def open_html():
-    update_html()  # HTML aktualisieren, bevor es geöffnet wird
+    update_html()  # HTML aktualisieren
     file_path = os.path.abspath("Cloud.html")
     webbrowser.open(f"file://{file_path}")
 
@@ -61,15 +70,13 @@ def add_file():
     file_path = filedialog.askopenfilename(title="Datei auswählen")
     if file_path:
         Data.append(file_path)
-        update_html()
-        open_html()
+        open_html()  # HTML aktualisieren und anzeigen
 
 # Datei entfernen
 def remove_from_cloud():
     if Data:
-        Data.pop()  # Entferne die zuletzt hinzugefügte Datei (kein GUI-Auswahl-Mechanismus)
-        update_html()
-        open_html()
+        Data.pop()  # Entferne die letzte Datei
+        open_html()  # HTML aktualisieren und anzeigen
 
 # Datei herunterladen (Dummy-Funktion)
 def download_file():
