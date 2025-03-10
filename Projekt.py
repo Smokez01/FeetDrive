@@ -51,7 +51,7 @@ def update_html():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeetDrive Cloud</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: darkviolet; color: white; text-align: center; }
+        body { font-family: Gabriola, sans-serif; background-color: darkviolet; color: white; text-align: center; }
         h1 { color: white; }
         ul { list-style-type: none; padding: 0; }
         li { background: #660066; margin: 5px; padding: 10px; border-radius: 5px; }
