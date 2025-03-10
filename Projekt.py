@@ -3,9 +3,10 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 import webbrowser
 import os
+import json
 
-# Liste für Dateien
-Data = []
+# JSON-Datei zum Speichern der Datei-Liste
+DATA_FILE = "data.json"
 
 # Hauptfenster erstellen
 f = Tk()
@@ -18,6 +19,21 @@ f.configure(bg="dark violet")
 icon_path = "images/Feet.ico"
 if os.path.exists(icon_path):
     f.iconbitmap(icon_path)
+
+# Funktion zum Laden gespeicherter Dateien
+def load_data():
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r", encoding="utf-8") as file:
+            return json.load(file)
+    return []
+
+# Funktion zum Speichern der Datei-Liste
+def save_data():
+    with open(DATA_FILE, "w", encoding="utf-8") as file:
+        json.dump(Data, file, indent=4)
+
+# Liste für Dateien (geladen aus JSON)
+Data = load_data()
 
 # Funktion zur Aktualisierung der Cloud.html
 def update_html():
@@ -70,12 +86,14 @@ def add_file():
     file_path = filedialog.askopenfilename(title="Datei auswählen")
     if file_path:
         Data.append(file_path)
+        save_data()  # Speichern der Datei-Liste
         open_html()  # HTML aktualisieren und anzeigen
 
 # Datei entfernen
 def remove_from_cloud():
     if Data:
         Data.pop()  # Entferne die letzte Datei
+        save_data()  # Speichern der Datei-Liste
         open_html()  # HTML aktualisieren und anzeigen
 
 # Datei herunterladen (Dummy-Funktion)
@@ -105,6 +123,9 @@ delete_Button.place(x=150, y=80)
 
 open_Button = Button(f, image=openPhoto, command=open_html, bg="dark violet", relief=FLAT, activebackground="dark violet")
 open_Button.place(x=80, y=10)
+
+# HTML beim Start aktualisieren
+update_html()
 
 # Tkinter-Hauptloop starten
 f.mainloop()
