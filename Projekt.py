@@ -50,6 +50,7 @@ def update_html():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeetDrive Cloud</title>
+    <img src="images/Feet.ico">
     <style>
         body { font-family: Comic Sans, sans-serif; background-color: darkviolet; color: white; text-align: center; }
         h1 { color: white; }
@@ -96,7 +97,7 @@ def remove_from_cloud():
         save_data()  # Speichern der Datei-Liste
         open_html()  # HTML aktualisieren und anzeigen
 
-# Datei herunterladen (Dummy-Funktion)
+# Datei herunterladen
 def download_file():
     open_html()
 
