@@ -13,7 +13,7 @@ f = Tk()
 f.title("FeetDrive")
 f.geometry("200x140")
 f.resizable(width=False, height=False)
-f.configure(bg="dark violet")
+f.configure(bg="maroon")
 
 # Icon setzen (optional)
 icon_path = "images/Feet.ico"
@@ -50,18 +50,21 @@ def update_html():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeetDrive Cloud</title>
-    <img src="images/Feet.ico">
     <style>
-        body { font-family: Comic Sans, sans-serif; background-color: darkviolet; color: white; text-align: center; }
-        h1 { color: white; }
+        body { font-family: Comic Sans, sans-serif; background-color: maroon; color: peru; text-align: center; }
+        h1 { color: teal; }
         ul { list-style-type: none; padding: 0; }
-        li { background: #660066; margin: 5px; padding: 10px; border-radius: 5px; }
-        a { color: white; text-decoration: none; }
+        li { background: maroon; margin: 5px; padding: 10px; border-radius: 5px; }
+        a { color: peru; text-decoration: none; }
         a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <h1>FeetDrive Cloud</h1>
+    <img src="images/Feet.ico">
+    <p></p>
+    <p></p>
+    <p></p>
     <ul>
 """
     for file in Data:
@@ -113,16 +116,16 @@ deletePhoto = load_image("images/delete.png")
 openPhoto = load_image("images/open.png")
 
 # Buttons erstellen
-upload_Button = Button(f, image=uploadPhoto, command=add_file, bg="dark violet", relief=FLAT, activebackground="dark violet")
+upload_Button = Button(f, image=uploadPhoto, command=add_file, bg="maroon", relief=FLAT, activebackground="maroon")
 upload_Button.place(x=10, y=80)
 
-download_Button = Button(f, image=downloadPhoto, command=download_file, bg="dark violet", relief=FLAT, activebackground="dark violet")
+download_Button = Button(f, image=downloadPhoto, command=download_file, bg="maroon", relief=FLAT, activebackground="maroon")
 download_Button.place(x=80, y=80)
 
-delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg="dark violet", relief=FLAT, activebackground="dark violet")
+delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg="maroon", relief=FLAT, activebackground="maroon")
 delete_Button.place(x=150, y=80)
 
-open_Button = Button(f, image=openPhoto, command=open_html, bg="dark violet", relief=FLAT, activebackground="dark violet")
+open_Button = Button(f, image=openPhoto, command=open_html, bg="maroon", relief=FLAT, activebackground="maroon")
 open_Button.place(x=80, y=10)
 
 # HTML beim Start aktualisieren
