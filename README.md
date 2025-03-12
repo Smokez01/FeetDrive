@@ -1,5 +1,7 @@
 # FeetDrive Cloud
 
+![Clean & Simple Design](images/feetdrive.png)
+
 ## Getting Started
 
 This project contains the basics of a cloud, for example uploading, downloading files.
