@@ -1,10 +1,11 @@
 from tkinter import *
-from tkinter import filedialog
-from PIL import Image, ImageTk
-import webbrowser
+from tkinter import filedialog, simpledialog  # Für Passwortabfrage
 import os
+import shutil
 import json
 import subprocess
+import webbrowser
+from PIL import Image, ImageTk
 
 # JSON-Datei zum Speichern der Datei-Liste
 DATA_FILE = "data.json"
@@ -35,6 +36,12 @@ def save_data():
 
 # Liste für Dateien (geladen aus JSON)
 Data = load_data()
+
+# Funktion zur Passwortabfrage (GUI)
+def authenticate():
+    entered_password = simpledialog.askstring("Passwort", "Passwort eingeben:", show="*")
+    correct_password = "Sag mal Was"  # Ändere dies auf dein gewünschtes Passwort
+    return entered_password == correct_password
 
 # Funktion zur Aktualisierung der Cloud.html
 def update_html():
@@ -82,30 +89,42 @@ def upload_to_github():
     except subprocess.CalledProcessError as e:
         print(f"Fehler beim Hochladen: {e}")
 
+# Datei hinzufügen
 def add_file():
     file_path = filedialog.askopenfilename(title="Datei auswählen")
     if file_path:
         file_name = os.path.basename(file_path)
         dest_path = os.path.join(DATA_FOLDER, file_name)
-        os.rename(file_path, dest_path)  # Datei verschieben
+        shutil.copy(file_path, dest_path)  # Datei kopieren statt verschieben
         Data.append(dest_path)
-        save_data()
-        upload_to_github()  # Datei hochladen
-        open_html()
-
-# Datei entfernen
-def remove_from_cloud():
-    if Data:
-        file_to_remove = Data.pop()
-        if os.path.exists(file_to_remove):
-            os.remove(file_to_remove)
         save_data()
         upload_to_github()
         open_html()
 
-# Datei herunterladen
-def download_file():
-    open_html()
+# Datei entfernen
+def remove_from_cloud():
+    if not authenticate():
+        print("Falsches Passwort! Zugriff verweigert.")
+        return
+    
+    file_to_remove = simpledialog.askstring("Datei entfernen", "Dateinamen eingeben, der gelöscht werden soll:")
+    
+    if file_to_remove:
+        file_to_remove_path = os.path.join(DATA_FOLDER, file_to_remove)
+        
+        if file_to_remove_path.lower() in (file.lower() for file in Data):
+            # Datei existiert in der Liste
+            Data.remove(file_to_remove_path)
+            if os.path.exists(file_to_remove_path):
+                os.remove(file_to_remove_path)
+                print(f"{file_to_remove} wurde gelöscht.")
+            else:
+                print("Datei existiert nicht im Dateisystem.")
+            save_data()
+            upload_to_github()
+            open_html()
+        else:
+            print("Datei nicht in der Liste gefunden.")
 
 # HTML öffnen
 def open_html():
@@ -130,7 +149,7 @@ button_ab_color = "Aqua"
 upload_Button = Button(f, image=uploadPhoto, command=add_file, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 upload_Button.place(x=10, y=80)
 
-download_Button = Button(f, image=downloadPhoto, command=download_file, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
+download_Button = Button(f, image=downloadPhoto, command=open_html, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 download_Button.place(x=80, y=80)
 
 delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
