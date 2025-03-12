@@ -61,7 +61,6 @@ def update_html():
 </head>
 <body>
     <h1>FeetDrive Cloud</h1>
-    <img src="images/Feet.ico">
     <p></p>
     <p></p>
     <p></p>
