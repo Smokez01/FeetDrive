@@ -68,7 +68,7 @@ def update_html():
     </style>
 </head>
 <body>
-    <h1>FeetDrive Cloud</h1>
+    <img src="images/feetdrive.png" alt="FeetDrive Logo" width="1000">
     <ul>
 """
     for file in Data:
