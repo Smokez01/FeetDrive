@@ -74,7 +74,6 @@ def upload_to_github():
     except subprocess.CalledProcessError as e:
         print(f"Fehler beim Hochladen: {e}")
 
-# Datei hinzufügen
 def add_file():
     file_path = filedialog.askopenfilename(title="Datei auswählen")
     if file_path:
