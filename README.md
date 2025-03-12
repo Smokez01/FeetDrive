@@ -12,7 +12,7 @@ Firstly, install all the needed modules, for that, you will need to install [pyt
 
 ## Usage
 
-If you would like to use this cloud, personally or commercially, please give us ([Smokez01](https://github.com/Smokez01), [xNeto7](https://github.com/xNeto7), [Jiajie8](https://github.com/Jiajie8)) credit."/n"
+If you would like to use this cloud, personally or commercially, please give us ([Smokez01](https://github.com/Smokez01), [xNeto7](https://github.com/xNeto7), [Jiajie8](https://github.com/Jiajie8)) credit.
 
 But please don´t use long Names as you Files.
 
