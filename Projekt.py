@@ -40,7 +40,10 @@ Data = load_data()
 # Funktion zur Passwortabfrage (GUI)
 def authenticate():
     entered_password = simpledialog.askstring("Passwort", "Passwort eingeben:", show="*")
-    correct_password = "Sag mal Was"  # Ändere dies auf dein gewünschtes Passwort
+    with open('config.json') as f:
+        config = json.load(f)
+
+    correct_password = config['password']
     return entered_password == correct_password
 
 # Funktion zur Aktualisierung der Cloud.html
