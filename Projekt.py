@@ -7,7 +7,7 @@ import json
 import subprocess
 
 # JSON-Datei zum Speichern der Datei-Liste
-DATA_FILE = "data.json"
+DATA_FILE = "data_reserve.json"
 DATA_FOLDER = "data"
 
 # Sicherstellen, dass das Datenverzeichnis existiert
