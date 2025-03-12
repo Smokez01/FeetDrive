@@ -13,7 +13,7 @@ f = Tk()
 f.title("FeetDrive")
 f.geometry("200x140")
 f.resizable(width=False, height=False)
-f.configure(bg="maroon")
+f.configure(bg="Coral")
 
 # Icon setzen (optional)
 icon_path = "images/Feet.ico"
@@ -51,11 +51,11 @@ def update_html():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeetDrive Cloud</title>
     <style>
-        body { font-family: Comic Sans, sans-serif; background-color: maroon; color: peru; text-align: center; }
-        h1 { color: teal; }
+        body { font-family: Comic Sans, sans-serif; background-color: Navy; color: PaleVioletRed  ; text-align: center; }
+        h1 { color: Lavender; }
         ul { list-style-type: none; padding: 0; }
-        li { background: maroon; margin: 5px; padding: 10px; border-radius: 5px; }
-        a { color: peru; text-decoration: none; }
+        li { background: Navy; margin: 5px; padding: 10px; border-radius: 5px; }
+        a { color: PaleVioletRed  ; text-decoration: none; }
         a:hover { text-decoration: underline; }
     </style>
 </head>
@@ -115,16 +115,16 @@ deletePhoto = load_image("images/delete.png")
 openPhoto = load_image("images/open.png")
 
 # Buttons erstellen
-upload_Button = Button(f, image=uploadPhoto, command=add_file, bg="maroon", relief=FLAT, activebackground="maroon")
+upload_Button = Button(f, image=uploadPhoto, command=add_file, bg="Coral", relief=FLAT, activebackground="Aqua")
 upload_Button.place(x=10, y=80)
 
-download_Button = Button(f, image=downloadPhoto, command=download_file, bg="maroon", relief=FLAT, activebackground="maroon")
+download_Button = Button(f, image=downloadPhoto, command=download_file, bg="Coral", relief=FLAT, activebackground="Aqua")
 download_Button.place(x=80, y=80)
 
-delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg="maroon", relief=FLAT, activebackground="maroon")
+delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg="Coral", relief=FLAT, activebackground="Aqua")
 delete_Button.place(x=150, y=80)
 
-open_Button = Button(f, image=openPhoto, command=open_html, bg="maroon", relief=FLAT, activebackground="maroon")
+open_Button = Button(f, image=openPhoto, command=open_html, bg="Coral", relief=FLAT, activebackground="Aqua")
 open_Button.place(x=80, y=10)
 
 # HTML beim Start aktualisieren
