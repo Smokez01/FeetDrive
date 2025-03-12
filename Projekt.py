@@ -63,7 +63,7 @@ def update_html():
 """
     for file in Data:
         file_name = os.path.basename(file)
-        html_content += f'        <li><a href="https://github.com/DEIN_GITHUB_USER/DEIN_REPO/raw/main/data/{file_name}" target="_blank">{file_name}</a></li>\n'
+        html_content += f'        <li><a href="https://github.com/Smokez01/Projekt/raw/main/data/{file_name}" target="_blank">{file_name}</a></li>\n'
     
     html_content += """    </ul>
 </body>
