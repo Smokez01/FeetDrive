@@ -1,9 +1,9 @@
 def ggt(a, b):
     while b != 0:
-        r = a % b  # Berechne den Rest
-        a = b      # Setze a auf den Wert von b
-        b = r      # Setze b auf den Rest
-    return a      # Wenn b 0 ist, ist a der GGT
+        r = a % b
+        a = b
+        b = r
+    return a
 
 # Beispiel:
 a = int(input("Gib mir eine Zahl "))
