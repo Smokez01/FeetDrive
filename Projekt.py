@@ -114,17 +114,20 @@ downloadPhoto = load_image("images/download.png")
 deletePhoto = load_image("images/delete.png")
 openPhoto = load_image("images/open.png")
 
+button_bg_color = "Coral"
+button_ab_color = "Aqua"
+
 # Buttons erstellen
-upload_Button = Button(f, image=uploadPhoto, command=add_file, bg="Coral", relief=FLAT, activebackground="Aqua")
+upload_Button = Button(f, image=uploadPhoto, command=add_file, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 upload_Button.place(x=10, y=80)
 
-download_Button = Button(f, image=downloadPhoto, command=download_file, bg="Coral", relief=FLAT, activebackground="Aqua")
+download_Button = Button(f, image=downloadPhoto, command=download_file, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 download_Button.place(x=80, y=80)
 
-delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg="Coral", relief=FLAT, activebackground="Aqua")
+delete_Button = Button(f, image=deletePhoto, command=remove_from_cloud, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 delete_Button.place(x=150, y=80)
 
-open_Button = Button(f, image=openPhoto, command=open_html, bg="Coral", relief=FLAT, activebackground="Aqua")
+open_Button = Button(f, image=openPhoto, command=open_html, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 open_Button.place(x=80, y=10)
 
 # HTML beim Start aktualisieren
