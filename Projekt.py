@@ -4,9 +4,15 @@ from PIL import Image, ImageTk
 import webbrowser
 import os
 import json
+import subprocess
 
 # JSON-Datei zum Speichern der Datei-Liste
 DATA_FILE = "data.json"
+DATA_FOLDER = "data"
+
+# Sicherstellen, dass das Datenverzeichnis existiert
+if not os.path.exists(DATA_FOLDER):
+    os.makedirs(DATA_FOLDER)
 
 # Hauptfenster erstellen
 f = Tk()
@@ -14,11 +20,6 @@ f.title("FeetDrive")
 f.geometry("200x140")
 f.resizable(width=False, height=False)
 f.configure(bg="Coral")
-
-# Icon setzen (optional)
-icon_path = "images/Feet.ico"
-if os.path.exists(icon_path):
-    f.iconbitmap(icon_path)
 
 # Funktion zum Laden gespeicherter Dateien
 def load_data():
@@ -38,70 +39,79 @@ Data = load_data()
 # Funktion zur Aktualisierung der Cloud.html
 def update_html():
     html_file = "Cloud.html"
-
-    # Falls die alte HTML-Datei existiert, löschen wir sie
+    
     if os.path.exists(html_file):
         os.remove(html_file)
-
-    # Neue HTML-Datei erstellen
+    
     html_content = """<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeetDrive Cloud</title>
     <style>
-        body { font-family: Comic Sans, sans-serif; background-color: Navy; color: PaleVioletRed  ; text-align: center; }
+        body { font-family: Comic Sans MS, sans-serif; background-color: Navy; color: PaleVioletRed; text-align: center; }
         h1 { color: Lavender; }
         ul { list-style-type: none; padding: 0; }
-        li { background: Navy; margin: 5px; padding: 10px; border-radius: 5px; }
-        a { color: PaleVioletRed  ; text-decoration: none; }
+        li { margin: 5px; padding: 10px; }
+        a { color: PaleVioletRed; text-decoration: none; }
         a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <h1>FeetDrive Cloud</h1>
-    <p></p>
-    <p></p>
-    <p></p>
     <ul>
 """
     for file in Data:
         file_name = os.path.basename(file)
-        file_path = os.path.abspath(file)
-        html_content += f'        <li><a href="file://{file_path}" target="_blank">{file_name}</a></li>\n'
-
+        html_content += f'        <li><a href="https://github.com/DEIN_GITHUB_USER/DEIN_REPO/raw/main/data/{file_name}" target="_blank">{file_name}</a></li>\n'
+    
     html_content += """    </ul>
 </body>
 </html>"""
-
+    
     with open(html_file, "w", encoding="utf-8") as file:
         file.write(html_content)
 
-# Funktion zum Öffnen der Cloud.html
-def open_html():
-    update_html()  # HTML aktualisieren
-    file_path = os.path.abspath("Cloud.html")
-    webbrowser.open(f"file://{file_path}")
+# Funktion zum Hochladen auf GitHub
+def upload_to_github():
+    try:
+        subprocess.run(["git", "add", "data/"], check=True)
+        subprocess.run(["git", "commit", "-m", "Update data"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print("Daten erfolgreich auf GitHub hochgeladen!")
+    except subprocess.CalledProcessError as e:
+        print(f"Fehler beim Hochladen: {e}")
 
 # Datei hinzufügen
 def add_file():
     file_path = filedialog.askopenfilename(title="Datei auswählen")
     if file_path:
-        Data.append(file_path)
-        save_data()  # Speichern der Datei-Liste
-        open_html()  # HTML aktualisieren und anzeigen
+        file_name = os.path.basename(file_path)
+        dest_path = os.path.join(DATA_FOLDER, file_name)
+        os.rename(file_path, dest_path)  # Datei verschieben
+        Data.append(dest_path)
+        save_data()
+        upload_to_github()  # Datei hochladen
+        open_html()
 
 # Datei entfernen
 def remove_from_cloud():
     if Data:
-        Data.pop()  # Entferne die letzte Datei
-        save_data()  # Speichern der Datei-Liste
-        open_html()  # HTML aktualisieren und anzeigen
+        file_to_remove = Data.pop()
+        if os.path.exists(file_to_remove):
+            os.remove(file_to_remove)
+        save_data()
+        upload_to_github()
+        open_html()
 
 # Datei herunterladen
 def download_file():
     open_html()
+
+# HTML öffnen
+def open_html():
+    update_html()
+    webbrowser.open("Cloud.html")
 
 # Bilder laden
 def load_image(path, size=(40, 40)):
