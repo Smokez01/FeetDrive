@@ -122,7 +122,7 @@ def open_html():
     update_html()
     webbrowser.open("cloud.html")
 
-# Bilder ladene
+# Bilder laden
 def load_image(path, size=(40, 40)):
     img = Image.open(path)
     img = img.resize(size, Image.Resampling.LANCZOS)
