@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import filedialog, simpledialog  # Für Passwortabfrage
+from tkinter import filedialog, simpledialog  # für Passwortabfrage
 import os
 import shutil
 import json
@@ -7,37 +7,30 @@ import subprocess
 import webbrowser
 from PIL import Image, ImageTk
 
-# JSON-Datei zum Speichern der Datei-Liste
 DATA_FILE = "data.json"
 DATA_FOLDER = "data"
 
-# Sicherstellen, dass das Datenverzeichnis existiert
 if not os.path.exists(DATA_FOLDER):
     os.makedirs(DATA_FOLDER)
 
-# Hauptfenster erstellen
 f = Tk()
 f.title("FeetDrive")
 f.geometry("200x140")
 f.resizable(width=False, height=False)
 f.configure(bg="Coral")
 
-# Funktion zum Laden gespeicherter Dateien
 def load_data():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as file:
             return json.load(file)
     return []
 
-# Funktion zum Speichern der Datei-Liste
 def save_data():
     with open(DATA_FILE, "w", encoding="utf-8") as file:
         json.dump(Data, file, indent=4)
 
-# Liste für Dateien (geladen aus JSON)
 Data = load_data()
 
-# Funktion zur Passwortabfrage (GUI)
 def authenticate():
     entered_password = simpledialog.askstring("Passwort", "Passwort eingeben:", show="*")
     with open('config.json') as f:
@@ -46,9 +39,8 @@ def authenticate():
     correct_password = config['password']
     return entered_password == correct_password
 
-# Funktion zur Aktualisierung der Cloud.html
 def update_html():
-    html_file = "Cloud.html"
+    html_file = "cloud.html"
     
     if os.path.exists(html_file):
         os.remove(html_file)
@@ -82,7 +74,6 @@ def update_html():
     with open(html_file, "w", encoding="utf-8") as file:
         file.write(html_content)
 
-# Funktion zum Hochladen auf GitHub
 def upload_to_github():
     try:
         subprocess.run(["git", "add", "data/"], check=True)
@@ -92,19 +83,17 @@ def upload_to_github():
     except subprocess.CalledProcessError as e:
         print(f"Fehler beim Hochladen: {e}")
 
-# Datei hinzufügen
 def add_file():
     file_path = filedialog.askopenfilename(title="Datei auswählen")
     if file_path:
         file_name = os.path.basename(file_path)
         dest_path = os.path.join(DATA_FOLDER, file_name)
-        shutil.copy(file_path, dest_path)  # Datei kopieren statt verschieben
+        shutil.copy(file_path, dest_path)
         Data.append(dest_path)
         save_data()
         upload_to_github()
         open_html()
 
-# Datei entfernen
 def remove_from_cloud():
     if not authenticate():
         print("Falsches Passwort! Zugriff verweigert.")
@@ -129,10 +118,9 @@ def remove_from_cloud():
         else:
             print("Datei nicht in der Liste gefunden.")
 
-# HTML öffnen
 def open_html():
     update_html()
-    webbrowser.open("Cloud.html")
+    webbrowser.open("cloud.html")
 
 # Bilder laden
 def load_image(path, size=(40, 40)):
@@ -148,7 +136,6 @@ openPhoto = load_image("images/open.png")
 button_bg_color = "Coral"
 button_ab_color = "Aqua"
 
-# Buttons erstellen
 upload_Button = Button(f, image=uploadPhoto, command=add_file, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 upload_Button.place(x=10, y=80)
 
@@ -161,8 +148,6 @@ delete_Button.place(x=150, y=80)
 open_Button = Button(f, image=openPhoto, command=open_html, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color)
 open_Button.place(x=80, y=10)
 
-# HTML beim Start aktualisieren
 update_html()
 
-# Tkinter-Hauptloop starten
 f.mainloop()
