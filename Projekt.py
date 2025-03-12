@@ -143,5 +143,5 @@ open_Button.place(x=80, y=10)
 # HTML beim Start aktualisieren
 update_html()
 
-# Tkinter-Hauptloop starten
+# Tkinter-Hauptloop startens
 f.mainloop()
