@@ -31,13 +31,19 @@ def save_data():
 
 Data = load_data()
 
-def authenticate():
-    entered_password = simpledialog.askstring("Passwort", "Passwort eingeben:", show="*")
-    with open('config.json') as f:
-        config = json.load(f)
+CONFIG_FILE = "config.json"
 
-    correct_password = config['password']
-    return entered_password == correct_password
+# Versuche, die config.json zu laden, falls sie existiert
+if os.path.exists(CONFIG_FILE):
+    with open(CONFIG_FILE, "r") as f:
+        config = json.load(f)
+    PASSWORD = config["password"]
+else:
+    PASSWORD = os.getenv("FEETDRIVE_PASSWORD", "StandardPasswort")  # Fallback zu Umgebungsvariable oder Standard
+
+def authenticate():
+    entered_password = input("Passwort eingeben: ")
+    return entered_password == PASSWORD
 
 def update_html():
     html_file = "cloud.html"
