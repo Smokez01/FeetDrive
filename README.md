@@ -17,7 +17,7 @@ Firstly, install all the needed modules, for that, you will need to install [pyt
 1. #### Clone the repository
    
    ```bash
-   git clone https://github.com/Smokez01/FeetDrive
+   git clone https://github.com/Smokez01/FeetDrive.git
    ```
    
 2. #### Install Dependencies:
