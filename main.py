@@ -155,10 +155,11 @@ class FeetDriveApp:
         button_ab_color = "aqua"
 
         # buttons erstellen und platzieren
+        Button(self.root, image=open_img, command=self.open_html, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color).place(x=80, y=10)
         Button(self.root, image=upload_img, command=self.add_file, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color).place(x=10, y=80)
         Button(self.root, image=download_img, command=self.open_html, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color).place(x=80, y=80)
         Button(self.root, image=delete_img, command=self.remove_from_cloud, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color).place(x=150, y=80)
-        Button(self.root, image=open_img, command=self.open_html, bg=button_bg_color, relief=FLAT, activebackground=button_ab_color).place(x=80, y=10)
+        
 
         # bilder speichern, damit sie nicht aus dem speicher gelöscht werden
         self.upload_img = upload_img
